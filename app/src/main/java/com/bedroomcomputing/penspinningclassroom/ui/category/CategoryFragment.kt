@@ -1,4 +1,4 @@
-package com.bedroomcomputing.penspinningclassroom.ui.home
+package com.bedroomcomputing.penspinningclassroom.ui.category
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,9 +10,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bedroomcomputing.penspinningclassroom.R
 
-class HomeFragment : Fragment() {
+class CategoryFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var homeViewModel: CategoryViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -20,12 +20,8 @@ class HomeFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         homeViewModel =
-                ViewModelProvider(this).get(HomeViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
+                ViewModelProvider(this).get(CategoryViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_category, container, false)
         return root
     }
 }

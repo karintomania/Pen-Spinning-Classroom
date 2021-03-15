@@ -1,10 +1,10 @@
-package com.bedroomcomputing.penspinningclassroom.ui.home
+package com.bedroomcomputing.penspinningclassroom.ui.category
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class HomeViewModel : ViewModel() {
+class CategoryViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is home Fragment"

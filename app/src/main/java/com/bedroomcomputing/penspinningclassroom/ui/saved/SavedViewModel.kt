@@ -1,10 +1,10 @@
-package com.bedroomcomputing.penspinningclassroom.ui.dashboard
+package com.bedroomcomputing.penspinningclassroom.ui.saved
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class DashboardViewModel : ViewModel() {
+class SavedViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is dashboard Fragment"

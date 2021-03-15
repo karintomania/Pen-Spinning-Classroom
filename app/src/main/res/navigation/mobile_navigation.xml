@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_category">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.bedroomcomputing.penspinningclassroom.ui.home.HomeFragment"
+        android:id="@+id/navigation_category"
+        android:name="com.bedroomcomputing.penspinningclassroom.ui.category.CategoryFragment"
         android:label="@string/title_category"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_category" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.bedroomcomputing.penspinningclassroom.ui.dashboard.DashboardFragment"
-        android:label="@string/title_favorite"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_saved"
+        android:name="com.bedroomcomputing.penspinningclassroom.ui.saved.SavedFragment"
+        android:label="@string/title_saved"
+        tools:layout="@layout/fragment_saved" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.bedroomcomputing.penspinningclassroom.ui.notifications.NotificationsFragment"
+        android:id="@+id/navigation_master"
+        android:name="com.bedroomcomputing.penspinningclassroom.ui.master.MasterFragment"
         android:label="@string/title_master"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_master" />
 </navigation>
