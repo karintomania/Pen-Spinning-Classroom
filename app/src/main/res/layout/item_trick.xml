@@ -14,7 +14,7 @@
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/textView_categoryName"
+            android:id="@+id/textView_trickListName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="36dp"
@@ -22,20 +22,20 @@
             android:textColor="@color/text_gray"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView_categoryIcon"
+            app:layout_constraintStart_toEndOf="@+id/imageView_trickListMastered"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView_categoryIcon"
+            android:id="@+id/imageView_trickListMastered"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_category_normal" />
+            app:srcCompat="@drawable/ic_master" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imageView_enter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"

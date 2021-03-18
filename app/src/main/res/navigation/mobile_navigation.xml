@@ -9,7 +9,11 @@
         android:id="@+id/navigation_category"
         android:name="com.bedroomcomputing.penspinningclassroom.ui.category.CategoryFragment"
         android:label="@string/title_category"
-        tools:layout="@layout/fragment_category" />
+        tools:layout="@layout/fragment_category" >
+        <action
+            android:id="@+id/action_navigation_category_to_trickListFragment"
+            app:destination="@id/trickListFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_saved"
@@ -22,4 +26,20 @@
         android:name="com.bedroomcomputing.penspinningclassroom.ui.master.MasterFragment"
         android:label="@string/title_master"
         tools:layout="@layout/fragment_master" />
+    <fragment
+        android:id="@+id/trickListFragment"
+        android:name="com.bedroomcomputing.penspinningclassroom.ui.tricklist.TrickListFragment"
+        tools:layout="@layout/fragment_trick_list" >
+        <argument
+            android:name="fromWhichMenu"
+            app:argType="integer" />
+        <argument
+            android:name="category"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <action
+            android:id="@+id/action_trickListFragment_to_navigation_category"
+            app:destination="@id/navigation_category"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

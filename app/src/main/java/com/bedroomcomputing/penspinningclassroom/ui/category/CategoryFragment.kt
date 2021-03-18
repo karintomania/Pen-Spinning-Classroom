@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bedroomcomputing.penspinningclassroom.R
 import com.bedroomcomputing.penspinningclassroom.databinding.FragmentCategoryBinding
@@ -30,8 +31,11 @@ class CategoryFragment : Fragment() {
     ): View? {
         val categoryList = listOf(
                 Category(resources.getString(R.string.category_normal), R.drawable.ic_category_normal),
-                Category(resources.getString(R.string.category_sonic), R.drawable.ic_category_sonic)
+                Category(resources.getString(R.string.category_sonic), R.drawable.ic_category_sonic),
+                Category(resources.getString(R.string.category_gunman), R.drawable.ic_category_gunman),
+                Category(resources.getString(R.string.category_infinity), R.drawable.ic_category_infinity)
         )
+
         homeViewModel = ViewModelProvider(this).get(CategoryViewModel::class.java)
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_category, container, false)
@@ -47,7 +51,12 @@ class CategoryFragment : Fragment() {
 
     private fun categoryListToCategoryItemList(list: List<Category>) : List<CategoryItem>{
         return list.map {
-            CategoryItem(it)
+            CategoryItem(it, View.OnClickListener {goToTrickList()})
         }
+    }
+
+    private fun goToTrickList(){
+        val action = CategoryFragmentDirections.actionNavigationCategoryToTrickListFragment(1,0)
+        findNavController().navigate(action)
     }
 }

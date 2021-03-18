@@ -5,4 +5,6 @@
     <string name="title_master">Master</string>
     <string name="category_normal">Normal</string>
     <string name="category_sonic">Sonic</string>
+    <string name="category_gunman">Gunman</string>
+    <string name="category_infinity">Infinity</string>
 </resources>
