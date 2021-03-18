@@ -28,13 +28,16 @@ class CategoryFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+        val categoryList = listOf(
+                Category(resources.getString(R.string.category_normal), R.drawable.ic_category_normal),
+                Category(resources.getString(R.string.category_sonic), R.drawable.ic_category_sonic)
+        )
         homeViewModel = ViewModelProvider(this).get(CategoryViewModel::class.java)
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_category, container, false)
 
         val adapter = GroupAdapter<GroupieViewHolder<ItemCategoryBinding>>()
-        val list = listOf("Normal", "Sonic", "Gunman")
-        adapter.addAll(categoryListToCategoryItemList(list))
+        adapter.addAll(categoryListToCategoryItemList(categoryList))
         val rv = binding.rvCategory
         rv.adapter = adapter
         rv.layoutManager = LinearLayoutManager(requireContext())
@@ -42,7 +45,7 @@ class CategoryFragment : Fragment() {
         return binding.root
     }
 
-    private fun categoryListToCategoryItemList(list: List<String>) : List<CategoryItem>{
+    private fun categoryListToCategoryItemList(list: List<Category>) : List<CategoryItem>{
         return list.map {
             CategoryItem(it)
         }
