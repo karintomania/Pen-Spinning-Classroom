@@ -7,9 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bedroomcomputing.penspinningclassroom.R
 import com.bedroomcomputing.penspinningclassroom.database.AppDatabase
+import com.bedroomcomputing.penspinningclassroom.database.Trick
 import com.bedroomcomputing.penspinningclassroom.databinding.FragmentTrickListBinding
 import com.bedroomcomputing.penspinningclassroom.databinding.ItemTrickBinding
 import com.xwray.groupie.GroupAdapter
@@ -31,18 +33,16 @@ class TrickListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val trickListList = listOf(
-                TrickList("Thumb acound", true, LocalDate.now(), true, 1),
-                TrickList("Thumb acound", true, LocalDate.now(), true, 1),
-                TrickList("Thumb acound", true, LocalDate.now(), true, 1)
-        )
         val trickDao = AppDatabase.getDatabase(requireContext()).trickDao()
         viewModel = TrickListViewModelFactory(trickDao).create(TrickListViewModel::class.java)
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_trick_list, container, false)
-
         val adapter = GroupAdapter<GroupieViewHolder>()
-        adapter.addAll(trickListListTotrickListItemList(trickListList))
+
+        viewModel.trickList.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            adapter.addAll(trickListListTotrickListItemList(it))
+        })
+
         val rv = binding.rvTrickList
         rv.adapter = adapter
         rv.layoutManager = LinearLayoutManager(requireContext())
@@ -55,11 +55,9 @@ class TrickListFragment : Fragment() {
         // TODO: Use the ViewModel
     }
 
-    private fun trickListListTotrickListItemList(list: List<TrickList>) : List<TrickListItem>{
+    private fun trickListListTotrickListItemList(list: List<Trick>) : List<TrickListItem>{
         return list.map {
             TrickListItem(it)
         }
-    }
-    private fun goToTrick(){
     }
 }

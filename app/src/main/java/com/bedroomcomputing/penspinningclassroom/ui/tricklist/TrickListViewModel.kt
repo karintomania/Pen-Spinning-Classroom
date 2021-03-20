@@ -2,9 +2,19 @@ package com.bedroomcomputing.penspinningclassroom.ui.tricklist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
+import com.bedroomcomputing.penspinningclassroom.database.Trick
 import com.bedroomcomputing.penspinningclassroom.database.TrickDao
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class TrickListViewModel(val trickDao: TrickDao) : ViewModel() {
+
+    val trickList = trickDao.getAll();
+    init{
+    }
+
 
 
 }
