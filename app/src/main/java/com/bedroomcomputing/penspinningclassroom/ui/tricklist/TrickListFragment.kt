@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bedroomcomputing.penspinningclassroom.R
+import com.bedroomcomputing.penspinningclassroom.database.AppDatabase
 import com.bedroomcomputing.penspinningclassroom.databinding.FragmentTrickListBinding
 import com.bedroomcomputing.penspinningclassroom.databinding.ItemTrickBinding
 import com.xwray.groupie.GroupAdapter
@@ -35,8 +36,8 @@ class TrickListFragment : Fragment() {
                 TrickList("Thumb acound", true, LocalDate.now(), true, 1),
                 TrickList("Thumb acound", true, LocalDate.now(), true, 1)
         )
-
-        viewModel = ViewModelProvider(this).get(TrickListViewModel::class.java)
+        val trickDao = AppDatabase.getDatabase(requireContext()).trickDao()
+        viewModel = TrickListViewModelFactory(trickDao).create(TrickListViewModel::class.java)
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_trick_list, container, false)
 
