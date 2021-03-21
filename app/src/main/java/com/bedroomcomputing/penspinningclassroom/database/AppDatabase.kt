@@ -1,11 +1,14 @@
 package com.bedroomcomputing.penspinningclassroom.database
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import android.os.Build
+import androidx.annotation.RequiresApi
+import androidx.room.*
+import java.time.LocalDate
+import java.time.LocalDateTime
 
 @Database(entities = arrayOf(Trick::class), version = 2)
+@TypeConverters(DateTypeConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun trickDao(): TrickDao
@@ -34,4 +37,20 @@ abstract class AppDatabase : RoomDatabase() {
     }
 
 
+}
+
+class DateTypeConverter {
+    @RequiresApi(Build.VERSION_CODES.O)
+    @TypeConverter
+    fun fromTimestamp(value: String?): LocalDate? {
+        if(value == "null"){
+            return null
+        }
+        return value?.let {  LocalDate.parse(value) }
+    }
+
+    @TypeConverter
+    fun dateToTimestamp(localDate: LocalDate?): String? {
+        return localDate?.toString()
+    }
 }
