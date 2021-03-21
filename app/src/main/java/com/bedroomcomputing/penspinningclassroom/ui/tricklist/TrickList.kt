@@ -6,9 +6,11 @@ import java.time.LocalDate
 import java.util.*
 
 data class TrickList(
+        val category: String,
         val trickName: String,
+        val trickDescription: String,
+        val level: Int,
         val isMasterd: Boolean,
-        val masterdDate: LocalDate,
-        val isSaved: Boolean,
-        val level: Int
+        val masterd: LocalDate?,
+        val isSaved: Boolean
 )

@@ -14,6 +14,7 @@ import com.bedroomcomputing.penspinningclassroom.database.AppDatabase
 import com.bedroomcomputing.penspinningclassroom.database.Trick
 import com.bedroomcomputing.penspinningclassroom.databinding.FragmentTrickListBinding
 import com.bedroomcomputing.penspinningclassroom.databinding.ItemTrickBinding
+import com.bedroomcomputing.penspinningclassroom.ui.trick.ResourceGetter
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import java.time.LocalDate
@@ -57,7 +58,16 @@ class TrickListFragment : Fragment() {
 
     private fun trickListListTotrickListItemList(list: List<Trick>) : List<TrickListItem>{
         return list.map {
-            TrickListItem(it)
+            val trickList = TrickList(
+                it.category,
+                requireContext().resources.getString(ResourceGetter.getTrickNameFromTrickKey(it.trickKey)),
+                requireContext().resources.getString(ResourceGetter.getTrickDescriptionFromTrickKey(it.trickKey)),
+                it.level,
+                it.isMastered,
+                it.mastered,
+                it.isSaved
+            )
+            TrickListItem(trickList)
         }
     }
 }

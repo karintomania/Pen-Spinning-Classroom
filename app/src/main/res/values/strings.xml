@@ -7,4 +7,6 @@
     <string name="category_sonic">Sonic</string>
     <string name="category_gunman">Gunman</string>
     <string name="category_infinity">Infinity</string>
+    <string name="trick_n0001">Thumb Around</string>
+    <string name="trickDescription_n0001">Your first pen spinning trick ever!</string>
 </resources>

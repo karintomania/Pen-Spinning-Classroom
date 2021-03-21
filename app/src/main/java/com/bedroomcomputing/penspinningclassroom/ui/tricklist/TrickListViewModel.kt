@@ -13,8 +13,18 @@ class TrickListViewModel(val trickDao: TrickDao) : ViewModel() {
 
     val trickList = trickDao.getAll();
     init{
+//        insert()
     }
 
+//    fun insert(){
+//        val trick = Trick(1, "normal", "n001", 1, false, null, false)
+//
+//        viewModelScope.launch {
+//            withContext(Dispatchers.IO){
+//                trickDao.insertAll(trick)
+//            }
+//        }
+//    }
 
 
 }
