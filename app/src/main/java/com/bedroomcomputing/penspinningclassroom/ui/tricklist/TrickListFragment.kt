@@ -60,8 +60,8 @@ class TrickListFragment : Fragment() {
         return list.map {
             val trickList = TrickList(
                 it.category,
-                requireContext().resources.getString(ResourceGetter.getTrickNameFromTrickKey(it.trickKey)),
-                requireContext().resources.getString(ResourceGetter.getTrickDescriptionFromTrickKey(it.trickKey)),
+                getTrickName(it.trickKey),
+                getTrickDesc(it.trickKey),
                 it.level,
                 it.isMastered,
                 it.mastered,
@@ -69,5 +69,13 @@ class TrickListFragment : Fragment() {
             )
             TrickListItem(trickList)
         }
+    }
+
+    private  fun getTrickName(trickKey:String): String{
+        return requireContext().resources.getString(ResourceGetter.getTrickNameFromTrickKey(trickKey))
+    }
+
+    private  fun getTrickDesc(trickKey:String): String{
+        return requireContext().resources.getString(ResourceGetter.getTrickDescriptionFromTrickKey(trickKey))
     }
 }
