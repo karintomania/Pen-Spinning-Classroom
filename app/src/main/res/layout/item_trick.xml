@@ -14,25 +14,24 @@
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/textView_trickListName"
+            android:id="@+id/textView_trickItemName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:text="TextView"
+            android:layout_marginStart="16dp"
+            android:text="ソニックひねり"
             android:textColor="@color/text_gray"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView_trickListMastered"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/imageView_trickItemMastered"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView_trickListMastered"
+            android:id="@+id/imageView_trickItemMastered"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_master" />
+            app:srcCompat="@drawable/ic_not_master" />
 
         <ImageView
             android:id="@+id/imageView_enter"
@@ -42,5 +41,75 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_enter" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout_level"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toEndOf="@+id/imageView_trickItemMastered"
+            app:layout_constraintTop_toBottomOf="@+id/textView_trickItemName">
+
+            <ImageView
+                android:id="@+id/imageView_star1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/ic_star_blank" />
+
+            <ImageView
+                android:id="@+id/imageView_star2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/ic_star_blank" />
+
+            <ImageView
+                android:id="@+id/imageView_star3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/ic_star_blank" />
+
+            <ImageView
+                android:id="@+id/imageView_star4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/ic_star_blank" />
+
+            <ImageView
+                android:id="@+id/imageView_star5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/ic_star_blank" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView_trickItemMasteredAt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:text="Masterd at:"
+            android:textColor="@color/text_gray"
+            app:layout_constraintStart_toEndOf="@+id/imageView_trickItemMastered"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout_level" />
+
+        <ImageView
+            android:id="@+id/imageView_trickItemSaved"
+            android:layout_width="23dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout_level"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_saved_blue" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

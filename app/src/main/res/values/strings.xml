@@ -9,4 +9,8 @@
     <string name="category_infinity">Infinity</string>
     <string name="trick_n0001">Thumb Around</string>
     <string name="trickDescription_n0001">Your first pen spinning trick ever!</string>
+    <string name="trick_n0002">Thumb Around Reverse</string>
+    <string name="trickDescription_n0002">Your first pen spinning trick ever!</string>
+    <string name="trick_s0001">Sonic</string>
+    <string name="trickDescription_default">Practice makes perfect!!</string>
 </resources>

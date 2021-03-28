@@ -1,5 +1,7 @@
 package com.bedroomcomputing.penspinningclassroom.ui.tricklist
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -8,7 +10,9 @@ import com.bedroomcomputing.penspinningclassroom.database.TrickDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.time.LocalDate
 
+@RequiresApi(Build.VERSION_CODES.O)
 class TrickListViewModel(val trickDao: TrickDao) : ViewModel() {
 
     val trickList = trickDao.getAll();
@@ -16,15 +20,15 @@ class TrickListViewModel(val trickDao: TrickDao) : ViewModel() {
 //        insert()
     }
 
-//    fun insert(){
-//        val trick = Trick(1, "normal", "n001", 1, false, null, false)
-//
-//        viewModelScope.launch {
-//            withContext(Dispatchers.IO){
-//                trickDao.insertAll(trick)
-//            }
-//        }
-//    }
+    fun insert(){
+        val trick = Trick(4, "sonic", "s002", 2, true, LocalDate.now(), true)
+
+        viewModelScope.launch {
+            withContext(Dispatchers.IO){
+                trickDao.insertAll(trick)
+            }
+        }
+    }
 
 
 }
