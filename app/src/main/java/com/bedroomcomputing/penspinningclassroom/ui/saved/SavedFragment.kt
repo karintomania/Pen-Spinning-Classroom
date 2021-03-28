@@ -1,6 +1,7 @@
 package com.bedroomcomputing.penspinningclassroom.ui.saved
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,11 +10,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bedroomcomputing.penspinningclassroom.R
 import com.bedroomcomputing.penspinningclassroom.database.AppDatabase
 import com.bedroomcomputing.penspinningclassroom.databinding.FragmentSavedBinding
 import com.bedroomcomputing.penspinningclassroom.ui.tricklist.TrickListItem
+import com.bedroomcomputing.penspinningclassroom.ui.tricklist.TrickListItemListener
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 
@@ -34,8 +37,12 @@ class SavedFragment : Fragment() {
 
         val adapter = GroupAdapter<GroupieViewHolder>()
 
+        val trickListItemListener = TrickListItemListener{
+            val action = SavedFragmentDirections.actionNavigationSavedToTrickFragment(it)
+            findNavController().navigate(action)
+        }
         viewModel.trickList.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-            adapter.addAll(TrickListItem.trickListListTotrickListItemList(requireContext(), it))
+            adapter.addAll(TrickListItem.trickListListTotrickListItemList(requireContext(), it, trickListItemListener))
         })
 
         binding.rvSaved.apply{

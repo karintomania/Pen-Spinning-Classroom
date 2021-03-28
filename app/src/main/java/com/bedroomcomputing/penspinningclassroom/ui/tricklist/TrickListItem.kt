@@ -3,6 +3,7 @@ package com.bedroomcomputing.penspinningclassroom.ui.tricklist
 import android.content.Context
 import android.content.res.Resources
 import android.os.Build
+import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
 import com.bedroomcomputing.penspinningclassroom.R
@@ -21,6 +22,8 @@ class TrickListItem(val trick: TrickList): BindableItem<ItemTrickBinding>(){
     @RequiresApi(Build.VERSION_CODES.O)
     override fun bind(binding: ItemTrickBinding, position: Int) {
         binding.textViewTrickItemName.setText(trick.trickName)
+        binding.imageViewEnter.setOnClickListener(trick.onClickListener)
+
         if(!trick.isSaved){
             binding.imageViewTrickItemSaved.visibility = View.INVISIBLE
         }
@@ -52,16 +55,18 @@ class TrickListItem(val trick: TrickList): BindableItem<ItemTrickBinding>(){
 
     companion object{
 
-        fun trickListListTotrickListItemList(context: Context, list: List<Trick>) : List<TrickListItem>{
-            return list.map {
+        fun trickListListTotrickListItemList(context: Context, list: List<Trick>, trickListItemListener: TrickListItemListener) : List<TrickListItem>{
+            return list.map { trick ->
                 val trickList = TrickList(
-                        it.category,
-                        getTrickName(context, it.trickKey),
-                        getTrickDesc(context, it.trickKey),
-                        it.level,
-                        it.isMastered,
-                        it.mastered,
-                        it.isSaved
+                        trick.uid,
+                        trick.category,
+                        getTrickName(context, trick.trickKey),
+                        getTrickDesc(context, trick.trickKey),
+                        trick.level,
+                        trick.isMastered,
+                        trick.mastered,
+                        trick.isSaved,
+                        View.OnClickListener {  trickListItemListener.onClick(trick) }
                 )
                 TrickListItem(trickList)
             }
@@ -75,4 +80,8 @@ class TrickListItem(val trick: TrickList): BindableItem<ItemTrickBinding>(){
             return context.resources.getString(ResourceGetter.getTrickDescriptionFromTrickKey(trickKey))
         }
     }
+}
+
+class TrickListItemListener(val clickListener: (uid: Int) -> Unit){
+    fun onClick(trick: Trick) = clickListener(trick.uid);
 }

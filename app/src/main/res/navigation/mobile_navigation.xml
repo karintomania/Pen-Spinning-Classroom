@@ -19,13 +19,21 @@
         android:id="@+id/navigation_saved"
         android:name="com.bedroomcomputing.penspinningclassroom.ui.saved.SavedFragment"
         android:label="@string/title_saved"
-        tools:layout="@layout/fragment_saved" />
+        tools:layout="@layout/fragment_saved" >
+        <action
+            android:id="@+id/action_navigation_saved_to_trickFragment"
+            app:destination="@id/trickFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_master"
         android:name="com.bedroomcomputing.penspinningclassroom.ui.master.MasterFragment"
         android:label="@string/title_master"
-        tools:layout="@layout/fragment_master" />
+        tools:layout="@layout/fragment_master" >
+        <action
+            android:id="@+id/action_navigation_master_to_trickFragment"
+            app:destination="@id/trickFragment" />
+    </fragment>
     <fragment
         android:id="@+id/trickListFragment"
         android:name="com.bedroomcomputing.penspinningclassroom.ui.tricklist.TrickListFragment"
@@ -41,5 +49,17 @@
             android:id="@+id/action_trickListFragment_to_navigation_category"
             app:destination="@id/navigation_category"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_trickListFragment_to_trickFragment"
+            app:destination="@id/trickFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/trickFragment"
+        android:name="com.bedroomcomputing.penspinningclassroom.ui.trick.TrickFragment"
+        android:label="TrickFragment"
+        tools:layout="@layout/fragment_trick">
+        <argument
+            android:name="uid"
+            app:argType="integer" />
     </fragment>
 </navigation>
