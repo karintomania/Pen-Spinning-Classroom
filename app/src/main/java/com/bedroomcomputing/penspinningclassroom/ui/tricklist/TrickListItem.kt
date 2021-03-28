@@ -1,5 +1,7 @@
 package com.bedroomcomputing.penspinningclassroom.ui.tricklist
 
+import android.content.Context
+import android.content.res.Resources
 import android.os.Build
 import android.view.View
 import androidx.annotation.RequiresApi
@@ -48,4 +50,29 @@ class TrickListItem(val trick: TrickList): BindableItem<ItemTrickBinding>(){
         return ItemTrickBinding.bind(view)
     }
 
+    companion object{
+
+        fun trickListListTotrickListItemList(context: Context, list: List<Trick>) : List<TrickListItem>{
+            return list.map {
+                val trickList = TrickList(
+                        it.category,
+                        getTrickName(context, it.trickKey),
+                        getTrickDesc(context, it.trickKey),
+                        it.level,
+                        it.isMastered,
+                        it.mastered,
+                        it.isSaved
+                )
+                TrickListItem(trickList)
+            }
+        }
+
+        private  fun getTrickName(context: Context, trickKey:String): String{
+            return context.resources.getString(ResourceGetter.getTrickNameFromTrickKey(trickKey))
+        }
+
+        private  fun getTrickDesc(context: Context, trickKey:String): String{
+            return context.resources.getString(ResourceGetter.getTrickDescriptionFromTrickKey(trickKey))
+        }
+    }
 }

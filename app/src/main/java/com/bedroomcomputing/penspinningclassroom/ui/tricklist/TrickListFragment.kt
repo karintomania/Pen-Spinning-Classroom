@@ -7,18 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bedroomcomputing.penspinningclassroom.R
 import com.bedroomcomputing.penspinningclassroom.database.AppDatabase
-import com.bedroomcomputing.penspinningclassroom.database.Trick
 import com.bedroomcomputing.penspinningclassroom.databinding.FragmentTrickListBinding
-import com.bedroomcomputing.penspinningclassroom.databinding.ItemTrickBinding
-import com.bedroomcomputing.penspinningclassroom.ui.trick.ResourceGetter
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
-import java.time.LocalDate
-import java.util.*
 
 class TrickListFragment : Fragment() {
 
@@ -41,12 +35,13 @@ class TrickListFragment : Fragment() {
         val adapter = GroupAdapter<GroupieViewHolder>()
 
         viewModel.trickList.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-            adapter.addAll(trickListListTotrickListItemList(it))
+            adapter.addAll(TrickListItem.trickListListTotrickListItemList(requireContext(), it))
         })
 
-        val rv = binding.rvTrickList
-        rv.adapter = adapter
-        rv.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvTrickList.apply{
+            setAdapter(adapter)
+            setLayoutManager(LinearLayoutManager(requireContext()))
+        }
 
         return binding.root
     }
@@ -56,26 +51,4 @@ class TrickListFragment : Fragment() {
         // TODO: Use the ViewModel
     }
 
-    private fun trickListListTotrickListItemList(list: List<Trick>) : List<TrickListItem>{
-        return list.map {
-            val trickList = TrickList(
-                it.category,
-                getTrickName(it.trickKey),
-                getTrickDesc(it.trickKey),
-                it.level,
-                it.isMastered,
-                it.mastered,
-                it.isSaved
-            )
-            TrickListItem(trickList)
-        }
-    }
-
-    private  fun getTrickName(trickKey:String): String{
-        return requireContext().resources.getString(ResourceGetter.getTrickNameFromTrickKey(trickKey))
-    }
-
-    private  fun getTrickDesc(trickKey:String): String{
-        return requireContext().resources.getString(ResourceGetter.getTrickDescriptionFromTrickKey(trickKey))
-    }
 }

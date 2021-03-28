@@ -11,6 +11,9 @@ interface TrickDao {
     @Query("SELECT * FROM trick")
     fun getAll(): LiveData<List<Trick>>
 
+    @Query("SELECT * FROM trick where is_saved = 1")
+    fun getSaved(): LiveData<List<Trick>>
+
     @Query("SELECT * FROM trick WHERE category = :category")
     fun loadAllByIds(category: String): List<Trick>
 
