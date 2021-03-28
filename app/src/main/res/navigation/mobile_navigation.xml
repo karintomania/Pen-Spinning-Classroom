@@ -39,12 +39,8 @@
         android:name="com.bedroomcomputing.penspinningclassroom.ui.tricklist.TrickListFragment"
         tools:layout="@layout/fragment_trick_list" >
         <argument
-            android:name="fromWhichMenu"
-            app:argType="integer" />
-        <argument
             android:name="category"
-            app:argType="integer"
-            android:defaultValue="0" />
+            app:argType="string" />
         <action
             android:id="@+id/action_trickListFragment_to_navigation_category"
             app:destination="@id/navigation_category"

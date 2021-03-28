@@ -2,6 +2,7 @@ package com.bedroomcomputing.penspinningclassroom.ui.tricklist
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -13,9 +14,9 @@ import kotlinx.coroutines.withContext
 import java.time.LocalDate
 
 @RequiresApi(Build.VERSION_CODES.O)
-class TrickListViewModel(val trickDao: TrickDao) : ViewModel() {
+class TrickListViewModel(val trickDao: TrickDao, val categoryName:String) : ViewModel() {
 
-    val trickList = trickDao.getAll();
+    var trickList = trickDao.selectByCategory(categoryName)
     init{
 //        insert()
     }
@@ -32,11 +33,11 @@ class TrickListViewModel(val trickDao: TrickDao) : ViewModel() {
 
 
 }
-class TrickListViewModelFactory(val trickDao: TrickDao) : ViewModelProvider.Factory {
+class TrickListViewModelFactory(val trickDao: TrickDao, val categoryName:String) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(TrickListViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return TrickListViewModel(trickDao) as T
+            return TrickListViewModel(trickDao, categoryName) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

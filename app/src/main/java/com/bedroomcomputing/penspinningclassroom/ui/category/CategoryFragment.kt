@@ -30,10 +30,10 @@ class CategoryFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         val categoryList = listOf(
-                Category(resources.getString(R.string.category_normal), R.drawable.ic_category_normal),
-                Category(resources.getString(R.string.category_sonic), R.drawable.ic_category_sonic),
-                Category(resources.getString(R.string.category_gunman), R.drawable.ic_category_gunman),
-                Category(resources.getString(R.string.category_infinity), R.drawable.ic_category_infinity)
+                Category(resources.getString(R.string.category_normal), R.drawable.ic_category_normal, "normal"),
+                Category(resources.getString(R.string.category_sonic), R.drawable.ic_category_sonic, "sonic"),
+                Category(resources.getString(R.string.category_gunman), R.drawable.ic_category_gunman, "gunman"),
+                Category(resources.getString(R.string.category_infinity), R.drawable.ic_category_infinity, "infinity")
         )
 
         homeViewModel = ViewModelProvider(this).get(CategoryViewModel::class.java)
@@ -50,13 +50,13 @@ class CategoryFragment : Fragment() {
     }
 
     private fun categoryListToCategoryItemList(list: List<Category>) : List<CategoryItem>{
-        return list.map {
-            CategoryItem(it, View.OnClickListener {goToTrickList()})
+        return list.map {category ->
+            CategoryItem(category, View.OnClickListener {goToTrickList(category.categoryId)})
         }
     }
 
-    private fun goToTrickList(){
-        val action = CategoryFragmentDirections.actionNavigationCategoryToTrickListFragment(1,0)
+    private fun goToTrickList(categoryId:String){
+        val action = CategoryFragmentDirections.actionNavigationCategoryToTrickListFragment(categoryId)
         findNavController().navigate(action)
     }
 }

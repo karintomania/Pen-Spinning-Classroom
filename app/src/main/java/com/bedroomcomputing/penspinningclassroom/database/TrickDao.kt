@@ -18,7 +18,7 @@ interface TrickDao {
     fun getMastered(): LiveData<List<Trick>>
 
     @Query("SELECT * FROM trick WHERE category = :category")
-    fun loadAllByIds(category: String): List<Trick>
+    fun selectByCategory(category: String): LiveData<List<Trick>>
 
     @Insert
     fun insertAll(vararg tricks: Trick)
