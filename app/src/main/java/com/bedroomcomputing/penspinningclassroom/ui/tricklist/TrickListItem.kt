@@ -1,14 +1,11 @@
 package com.bedroomcomputing.penspinningclassroom.ui.tricklist
 
 import android.content.Context
-import android.content.res.Resources
 import android.os.Build
-import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
 import com.bedroomcomputing.penspinningclassroom.R
 import com.bedroomcomputing.penspinningclassroom.database.Trick
-import com.bedroomcomputing.penspinningclassroom.databinding.FragmentTrickListBinding
 import com.bedroomcomputing.penspinningclassroom.databinding.ItemTrickBinding
 import com.bedroomcomputing.penspinningclassroom.ui.trick.ResourceGetter
 import com.xwray.groupie.viewbinding.BindableItem
@@ -30,12 +27,12 @@ class TrickListItem(val trick: TrickList): BindableItem<ItemTrickBinding>(){
         if(trick.isMasterd){
 
             val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd")
-            val masteredAtText = "Mastered at: " + trick.masterd?.format(formatter)
-            binding.textViewTrickItemMasteredAt.setText("Masterd at: 2021/01/01")
+            binding.textViewTrickItemMasteredAt.setText(trick.masterd?.format(formatter))
             binding.imageViewTrickItemMastered.setImageResource(R.drawable.ic_master)
 
         }else{
             binding.textViewTrickItemMasteredAt .visibility = View.INVISIBLE
+            binding.textViewTrickItemMasteredAtLabel .visibility = View.INVISIBLE
         }
 
         setStars(binding, trick.level)
@@ -73,11 +70,11 @@ class TrickListItem(val trick: TrickList): BindableItem<ItemTrickBinding>(){
         }
 
         private  fun getTrickName(context: Context, trickKey:String): String{
-            return context.resources.getString(ResourceGetter.getTrickNameFromTrickKey(trickKey))
+            return context.resources.getString(ResourceGetter.getTrickName(trickKey))
         }
 
         private  fun getTrickDesc(context: Context, trickKey:String): String{
-            return context.resources.getString(ResourceGetter.getTrickDescriptionFromTrickKey(trickKey))
+            return context.resources.getString(ResourceGetter.getTrickDescription(trickKey))
         }
     }
 }

@@ -5,7 +5,7 @@ import com.bedroomcomputing.penspinningclassroom.R
 
 class ResourceGetter {
     companion object{
-        fun getTrickNameFromTrickKey(trickKey:String): Int{
+        fun getTrickName(trickKey:String): Int{
             Log.d("resource", trickKey)
             return when(trickKey){
                 // normal
@@ -17,7 +17,7 @@ class ResourceGetter {
             }
         }
 
-        fun getTrickDescriptionFromTrickKey(trickKey:String): Int{
+        fun getTrickDescription(trickKey:String): Int{
             return when(trickKey){
                 "n001" -> R.string.trickDescription_n0001
                 else -> R.string.trickDescription_default

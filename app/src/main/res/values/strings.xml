@@ -3,6 +3,7 @@
     <string name="title_category">Category</string>
     <string name="title_saved">Saved</string>
     <string name="title_master">Master</string>
+    <string name="masteredAt">Mastered at:</string>
     <string name="category_normal">Normal</string>
     <string name="category_sonic">Sonic</string>
     <string name="category_gunman">Gunman</string>
